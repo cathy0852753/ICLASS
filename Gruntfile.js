@@ -1,19 +1,19 @@
 var grunt = require('grunt');
 
 grunt.config.init({
-    pkg: grunt.file.readJSON('./AlarmClock/package.json'),
+    pkg: grunt.file.readJSON('./iCLASS/package.json'),
     'create-windows-installer': {
         ia32: {
-            appDirectory: './AlarmClock/AlarmClock-win32-x64',
-            outputDirectory: './AlarmClock/installer64',
-            authors: 'Robby',
-            title: 'AlarmClock',
-            exe: 'AlarmClock.exe',
-            description: 'alarm clock',
+            appDirectory: './iCLASS/iCLASS-win32-x64',
+            outputDirectory: './iCLASS/installer64',
+            authors: 'iCLASS',
+            title: 'iCLASS',
+            exe: 'iCLASS.exe',
+            description: 'iCLASS',
             noMsi: true,
-            loadingGif: 'clock.ico',
-            setupIcon: 'clock.ico',
-            icon: 'clock.ico',
+            loadingGif: 'iCLASS.ico',
+            setupIcon: 'iCLASS.ico',
+            icon: 'iCLASS.ico',
         }
     }
 })

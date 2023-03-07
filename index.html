@@ -5,24 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Electron</title>
+    <title>ICLASS</title>
+    <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase.js"></script>
+    <script src="https://webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+    <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
+<style>
+    b{
+        color: rgb(71, 69, 69)
+    }
+    span{
+        color: rgb(255, 133, 52);
+    }
+    body{
+        background-color:  rgba(255, 255, 255, 0.6);
+        /* background-image: linear-gradient( rgba(54, 71, 71, 0.301)); */
+        -webkit-app-region: drag;
+        font-family: Microsoft JhengHei
+        }
+    h1 {
+        -webkit-app-region: no-drag;
+    }
+    #qua,#a1,#a2,#a3{display:none}
+    button {
+        -webkit-app-region: no-drag;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        
+        }
+        .button2 {
+            background-color: white; 
+            color: black; 
+            border: 2px solid #008CBA;
+            padding: 6px 3px;
+        }
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;}
+        .button3 {
+            background-color: white; 
+            color: black; 
+            border: 2px solid #f44336;
+        }
 
+        .button3:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+</style>
 <body>
-    <h1>Hello Electron</h1>
-    <p>Node Version:
-        <script>document.write(process.versions.node)</script>
-    </p>
-    <p>Chrome Version:
-        <script>document.write(process.versions.chrome)</script>
-    </p>
-    <p>Electron Version:
-        <script>document.write(process.versions.electron)</script>
-    </p>
-    <hr>
-    <div class="now-time"></div>
-    <input type="text" class="alarm-time">
+    <!-- 寫兩個div 第二個畫面寫課程按鈕答對人數 -->
+    <h1 ><img src="iCLASS.png" alt="" width="50" height="50">iCLASS</h1>
+    <button type="button" id="closebt" class="button button2" >關閉視窗</button>
+    <button type="button" id="minbt" class="button button2" >縮小視窗</button>
+    <button type="button" id="irs" class="button button2">IRS</button>
+    <div id="ask">
+        <h3>專案管理</h3>
+        <div id="show"></div>
+        <!-- <button id="screen-shot">螢幕截圖!</button> -->
+        <!-- <p id="screenshot-path"></p> -->
+        <!-- <input id="filename" type="file" > -->
+    </div>
+    <div id="qua" >
+        <h3>專案管理 IRS</h3>
+        <button type="button" id="q1" class="button button3">題目一</button>
+        <button type="button" id="q2" class="button button3">題目二</button>
+        <button type="button" id="q3" class="button button3">題目三</button>
+        <div id="a1">
+            <h4>1.在專案管理中，若要選擇趕工的活動（Activity to Crash），下列敘述何者正確？</h5>
+            <h5>(A)選擇要徑上的活動進行趕工<br>
+                (B)針對所有有寬裕時間（SLACK TIME）的活動進行趕工<br>
+                (C)針對作業時間最長的活動進行趕工<br>
+                (D)選擇成本最低的活動進行趕工</h5>
+                <button id="qua1">發送題目</button>
+        </div>
+        <div id="a2">
+            <h4>2.下列哪些是專案人力資源規劃的手法（或方法）？</h4>
+            <h5>(A)以上皆是 <br>
+                (B)人力需求分析<br> 
+                (C)關係人分析 <br>
+                (D)組織理論</h5>
+                <button id="qua2">發送題目</button>
+        </div>
+        <div id="a3">
+            <h4>3.專案團隊運作過程下列哪個時期顯得最為混亂？</h4>
+            <h5>(A)規範期 <br>
+                (B)審查期<br> 
+                (C)完成期<br> 
+                (D)組成期</h5>
+                <button id="qua3" >發送題目</button>
+        </div>
 
+    </div>
+    
+    
     <script src="app.js"></script>
 </body>
 

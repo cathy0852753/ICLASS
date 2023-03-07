@@ -8,7 +8,7 @@ const {
 
 const path = require('path')
 const url = require('url')
-const ChildProcess = require('child_process')
+
 
 let win
 
@@ -33,12 +33,19 @@ app.on('activate', () => {
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
-        width: 400,
-        height: 400,
-        maximizable: false
+        width: 250,
+        height: 890,
+        frame: false,
+        //center:false,
+        maximizable: true,
+        transparent: true,
+        webPreferences:{
+            nodeIntegration:true,
+        }
     })
 
     win.setAlwaysOnTop(true)
+    Menu.setApplicationMenu(null)
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
@@ -55,9 +62,9 @@ function createWindow() {
     })
 
     // When Window Minimize
-    win.on('minimize', () => {
-        win.hide()
-    })
+    // win.on('minimize', () => {
+    //     win.hide()
+    // })
 
     win.on('restore', () => {
         console.log('restore')
@@ -69,10 +76,10 @@ function createWindow() {
 
 function createTray() {
     let appIcon = null
-    const iconPath = path.join(__dirname, 'clock.ico')
+    const iconPath = path.join(__dirname, 'question.ico')
 
     const contextMenu = Menu.buildFromTemplate([{
-            label: 'AlarmClock',
+            label: '發問',
             click() {
                 win.show()
             }
@@ -87,7 +94,7 @@ function createTray() {
     ]);
 
     appIcon = new Tray(iconPath)
-    appIcon.setToolTip('Alarm Clock')
+    appIcon.setToolTip('發問')
     appIcon.setContextMenu(contextMenu)
 
 }
@@ -137,3 +144,21 @@ function handleSquirrelEvent() {
             return true;
     }
 }
+
+
+const ipc = electron.ipcMain
+//登入視窗最小化
+ipc.on('window-min',function(){
+  win.minimize();
+})
+//登入視窗最大化
+ipc.on('window-max',function(){
+  if(win.isMinimized()){
+      win.restore();  
+  }else{
+      win.maximize(); 
+  }
+})
+ipc.on('window-close',function(){
+    win.close();
+  })
